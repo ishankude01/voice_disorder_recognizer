@@ -3,6 +3,7 @@
 venv/
 __pycache__/
 *.py[cod]
+*$py.class
 .pytest_cache/
 .ipynb_checkpoints/
 .runtime/
@@ -10,6 +11,13 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Local backups and temporary files
+*.bak
+*.bak_*
+*.backup
+*.tmp
+*.log
 
 # Downloaded research data and regenerable feature caches
 data/raw/

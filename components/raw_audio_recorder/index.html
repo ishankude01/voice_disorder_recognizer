@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raw Audio Recorder</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-hover: #115e59;
+      --bg-card: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+      --success: #16a34a;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 8px 4px;
+      color: var(--text-main);
+      background: transparent;
+      box-sizing: border-box;
+    }
+    .recorder-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .controls-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    button {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.15s ease, transform 0.05s ease;
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-record {
+      background-color: var(--primary);
+      color: white;
+    }
+    .btn-record:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+    .btn-clear {
+      background-color: #e2e8f0;
+      color: var(--text-main);
+    }
+    .btn-clear:hover:not(:disabled) {
+      background-color: #cbd5e1;
+    }
+    .recording-pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--danger);
+      display: inline-block;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0.4; transform: scale(1.3); }
+    }
+    .status-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .status-text.recording {
+      color: var(--danger);
+      font-weight: 600;
+    }
+    .status-text.success {
+      color: var(--success);
+      font-weight: 500;
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background-color: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: var(--primary);
+      transition: width 0.1s linear;
+    }
+    .error-box {
+      display: none;
+      font-size: 13px;
+      color: var(--danger);
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 8px 12px;
+    }
+    audio {
+      width: 100%;
+      height: 38px;
+      outline: none;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="recorder-container">
+    <div class="controls-row">
+      <button id="recordBtn" class="btn-record" type="button">
+        <span id="recordIcon">&#9679;</span>
+        <span id="recordLabel">Record 5-Second Voice</span>
+      </button>
+      <button id="clearBtn" class="btn-clear" type="button" style="display: none;">
+        <span>&#10005;</span> Clear Recording
+      </button>
+      <p id="statusMsg" class="status-text">Ready. Speak a steady &ldquo;aa&rdquo; vowel for 5 seconds.</p>
+    </div>
+
+    <div id="progressContainer" class="progress-bar-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+
+    <audio id="audioPlayer" controls></audio>
+  </div>
+
+  <script>
+    (function () {
+      let isRecording = false;
+      let audioCtx = null;
+      let stream = null;
+      let scriptNode = null;
+      let sourceNode = null;
+      let muteNode = null;
+      let recordedSampleRate = 16000;
+      let audioChunks = [];
+      let totalSamplesRecorded = 0;
+      let targetSamples = 0;
+      let timerInterval = null;
+      const RECORD_SECONDS = 5.0;
+
+      const recordBtn = document.getElementById("recordBtn");
+      const clearBtn = document.getElementById("clearBtn");
+      const statusMsg = document.getElementById("statusMsg");
+      const errorBox = document.getElementById("errorBox");
+      const progressContainer = document.getElementById("progressContainer");
+      const progressBar = document.getElementById("progressBar");
+      const audioPlayer = document.getElementById("audioPlayer");
+
+      function sendStreamlitMsg(type, data) {
+        window.parent.postMessage(
+          Object.assign({ isStreamlitMessage: true, type: type }, data),
+          "*"
+        );
+      }
+
+      function notifyHeight() {
+        requestAnimationFrame(() => {
+          const height = document.body.scrollHeight || 180;
+          sendStreamlitMsg("streamlit:setFrameHeight", { height: height });
+        });
+      }
+
+      function notifyValue(val) {
+        sendStreamlitMsg("streamlit:setComponentValue", { value: val });
+      }
+
+      // Initialize Streamlit handshake
+      window.addEventListener("message", (event) => {
+        if (event.data && event.data.type === "streamlit:render") {
+          notifyHeight();
+        }
+      });
+      sendStreamlitMsg("streamlit:componentReady", { apiVersion: 1 });
+      notifyHeight();
+
+      function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.style.display = "block";
+        statusMsg.style.display = "none";
+        notifyHeight();
+      }
+
+      function hideError() {
+        errorBox.style.display = "none";
+        statusMsg.style.display = "block";
+        notifyHeight();
+      }
+
+      function encodeWAV(samples, sampleRate) {
+        const buffer = new ArrayBuffer(44 + samples.length * 2);
+        const view = new DataView(buffer);
+
+        function writeString(offset, string) {
+          for (let i = 0; i < string.length; i++) {
+            view.setUint8(offset + i, string.charCodeAt(i));
+          }
+        }
+
+        /* RIFF identifier */
+        writeString(0, "RIFF");
+        /* file length */
+        view.setUint32(4, 36 + samples.length * 2, true);
+        /* RIFF type & format */
+        writeString(8, "WAVE");
+        writeString(12, "fmt ");
+        /* format chunk length */
+        view.setUint32(16, 16, true);
+        /* sample format (raw PCM = 1) */
+        view.setUint16(20, 1, true);
+        /* channel count (mono = 1) */
+        view.setUint16(22, 1, true);
+        /* sample rate */
+        view.setUint32(24, sampleRate, true);
+        /* byte rate (sample rate * block align) */
+        view.setUint32(28, sampleRate * 2, true);
+        /* block align (channel count * bytes per sample) */
+        view.setUint16(32, 2, true);
+        /* bits per sample */
+        view.setUint16(34, 16, true);
+        /* data chunk identifier */
+        writeString(36, "data");
+        /* data chunk length */
+        view.setUint32(40, samples.length * 2, true);
+
+        /* Write 16-bit PCM samples */
+        let offset = 44;
+        for (let i = 0; i < samples.length; i++) {
+          let s = Math.max(-1, Math.min(1, samples[i]));
+          view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+          offset += 2;
+        }
+        return buffer;
+      }
+
+      function bufferToBase64(buffer) {
+        let binary = "";
+        const bytes = new Uint8Array(buffer);
+        const len = bytes.byteLength;
+        for (let i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+      }
+
+      async function startRecording() {
+        hideError();
+        audioPlayer.style.display = "none";
+        clearBtn.style.display = "none";
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          showError("Microphone recording is not supported in this browser. Please upload a WAV file.");
+          return;
+        }
+
+        try {
+          // Request raw audio disabling browser noise suppression and auto-gain
+          const constraints = {
+            audio: {
+              echoCancellation: false,
+              noiseSuppression: false,
+              autoGainControl: false,
+              channelCount: 1
+            }
+          };
+          stream = await navigator.mediaDevices.getUserMedia(constraints);
+        } catch (err) {
+          if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
+            showError("Microphone access was denied. Please allow microphone permission in your browser address bar.");
+          } else if (err.name === "NotFoundError" || err.name === "DevicesNotFoundError") {
+            showError("No microphone hardware detected on your device.");
+          } else {
+            showError("Could not access microphone: " + (err.message || err.name));
+          }
+          return;
+        }
+
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContextClass();
+          if (audioCtx.state === "suspended") {
+            await audioCtx.resume();
+          }
+
+          recordedSampleRate = audioCtx.sampleRate;
+          targetSamples = Math.floor(recordedSampleRate * RECORD_SECONDS);
+          audioChunks = [];
+          totalSamplesRecorded = 0;
+
+          sourceNode = audioCtx.createMediaStreamSource(stream);
+          scriptNode = audioCtx.createScriptProcessor(4096, 1, 1);
+          muteNode = audioCtx.createGain();
+          muteNode.gain.value = 0;
+
+          scriptNode.onaudioprocess = function (e) {
+            if (!isRecording) return;
+            const inputData = e.inputBuffer.getChannelData(0);
+            const remaining = targetSamples - totalSamplesRecorded;
+            if (remaining <= 0) {
+              stopRecording();
+              return;
+            }
+            const copyLength = Math.min(inputData.length, remaining);
+            audioChunks.push(new Float32Array(inputData.subarray(0, copyLength)));
+            totalSamplesRecorded += copyLength;
+
+            const pct = Math.min(100, (totalSamplesRecorded / targetSamples) * 100);
+            progressBar.style.width = pct + "%";
+
+            if (totalSamplesRecorded >= targetSamples) {
+              stopRecording();
+            }
+          };
+
+          sourceNode.connect(scriptNode);
+          scriptNode.connect(muteNode);
+          muteNode.connect(audioCtx.destination);
+
+          isRecording = true;
+          recordBtn.disabled = true;
+          progressContainer.style.display = "block";
+          progressBar.style.width = "0%";
+          statusMsg.className = "status-text recording";
+          statusMsg.innerHTML = '<span class="recording-pulse"></span> Recording steady "aa"... 5.0s remaining';
+
+          const startTime = Date.now();
+          timerInterval = setInterval(() => {
+            const elapsed = (Date.now() - startTime) / 1000;
+            const remainingSec = Math.max(0, RECORD_SECONDS - elapsed).toFixed(1);
+            statusMsg.innerHTML = `<span class="recording-pulse"></span> Recording steady "aa"... ${remainingSec}s remaining`;
+          }, 100);
+
+          notifyHeight();
+        } catch (err) {
+          stopResources();
+          showError("AudioContext initialization error: " + err.message);
+        }
+      }
+
+      function stopResources() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        if (stream) {
+          stream.getTracks().forEach((track) => track.stop());
+          stream = null;
+        }
+        if (scriptNode) {
+          scriptNode.disconnect();
+          scriptNode = null;
+        }
+        if (muteNode) {
+          muteNode.disconnect();
+          muteNode = null;
+        }
+        if (sourceNode) {
+          sourceNode.disconnect();
+          sourceNode = null;
+        }
+        if (audioCtx && audioCtx.state !== "closed") {
+          audioCtx.close().catch(() => {});
+          audioCtx = null;
+        }
+      }
+
+      function stopRecording() {
+        if (!isRecording) return;
+        isRecording = false;
+        stopResources();
+
+        progressContainer.style.display = "none";
+        recordBtn.disabled = false;
+
+        // Flatten chunks
+        const fullSamples = new Float32Array(totalSamplesRecorded);
+        let offset = 0;
+        for (let i = 0; i < audioChunks.length; i++) {
+          fullSamples.set(audioChunks[i], offset);
+          offset += audioChunks[i].length;
+        }
+
+        const wavBuffer = encodeWAV(fullSamples, recordedSampleRate);
+        const wavBase64 = bufferToBase64(wavBuffer);
+
+        // Render playback player
+        const blob = new Blob([wavBuffer], { type: "audio/wav" });
+        const audioUrl = URL.createObjectURL(blob);
+        audioPlayer.src = audioUrl;
+        audioPlayer.style.display = "block";
+        clearBtn.style.display = "inline-flex";
+
+        statusMsg.className = "status-text success";
+        statusMsg.textContent = "5.0-second recording captured (WAV). Listen above, then click Analyze Voice.";
+
+        // Send valid WAV data to Streamlit Python
+        notifyValue({
+          wav_base64: wavBase64,
+          sample_rate: recordedSampleRate,
+          duration: RECORD_SECONDS,
+          timestamp: Date.now()
+        });
+
+        notifyHeight();
+      }
+
+      function clearRecording() {
+        audioPlayer.pause();
+        audioPlayer.src = "";
+        audioPlayer.style.display = "none";
+        clearBtn.style.display = "none";
+        statusMsg.className = "status-text";
+        statusMsg.textContent = 'Cleared. Speak a steady "aa" vowel for 5 seconds.';
+        notifyValue(null);
+        notifyHeight();
+      }
+
+      recordBtn.addEventListener("click", () => {
+        if (!isRecording) {
+          startRecording();
+        }
+      });
+
+      clearBtn.addEventListener("click", () => {
+        clearRecording();
+      });
+    })();
+  </script>
+</body>
+</html>

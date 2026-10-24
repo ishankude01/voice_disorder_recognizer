@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "automated_tests": 15,
+  "test_command": "python -m pytest tests/test_v3.py tests/test_v3_release.py -q",
+  "cached_fit_partition_audits": 190,
+  "candidate_rows": 195,
+  "all_nested_candidates_completed": true,
+  "historical_artifacts_unchanged": true,
+  "reproduction_input_hash_and_prepare_smoke": "passed; full second training not rerun",
+  "benchmark": {
+    "scope": "Ten fixed development examples; not an accuracy evaluation",
+    "model_load_seconds": 0.04662730000563897,
+    "median_seconds": 0.362212099997123,
+    "p95_seconds": 1.1546348849955392,
+    "max_seconds": 1.192129199996998,
+    "median_under_five_seconds": true,
+    "offline_website_prediction_agreement": true,
+    "recordings": [
+      {
+        "record_id": "SVD:2",
+        "source": "SVD",
+        "true_label": 0,
+        "leading_label": "Healthy",
+        "uncertain": true,
+        "seconds": 0.17722629999479977,
+        "model_score": 0.6616626728137702
+      },
+      {
+        "record_id": "SVD:3",
+        "source": "SVD",
+        "true_label": 0,
+        "leading_label": "Healthy",
+        "uncertain": true,
+        "seconds": 0.283851300002425,
+        "model_score": 0.7331384070348245
+      },
+      {
+        "record_id": "SVD:4",
+        "source": "SVD",
+        "true_label": 0,
+        "leading_label": "Healthy",
+        "uncertain": true,
+        "seconds": 0.39579589999630116,
+        "model_score": 0.6201389349482288
+      },
+      {
+        "record_id": "SVD:105",
+        "source": "SVD",
+        "true_label": 1,
+        "leading_label": "Pathological",
+        "uncertain": true,
+        "seconds": 0.2606536999956006,
+        "model_score": 0.7499589430133684
+      },
+      {
+        "record_id": "SVD:106",
+        "source": "SVD",
+        "true_label": 1,
+        "leading_label": "Pathological",
+        "uncertain": true,
+        "seconds": 0.32862829999794485,
+        "model_score": 0.587330875492161
+      },
+      {
+        "record_id": "SVD:107",
+        "source": "SVD",
+        "true_label": 1,
+        "leading_label": "Pathological",
+        "uncertain": true,
+        "seconds": 0.2765164000011282,
+        "model_score": 0.6262561193480581
+      },
+      {
+        "record_id": "VOICED:voice002",
+        "source": "VOICED",
+        "true_label": 0,
+        "leading_label": "Healthy",
+        "uncertain": true,
+        "seconds": 1.100369600004342,
+        "model_score": 0.7766917785236506
+      },
+      {
+        "record_id": "VOICED:voice019",
+        "source": "VOICED",
+        "true_label": 0,
+        "leading_label": "Healthy",
+        "uncertain": true,
+        "seconds": 1.0712965999991866,
+        "model_score": 0.6862787614348018
+      },
+      {
+        "record_id": "VOICED:voice001",
+        "source": "VOICED",
+        "true_label": 1,
+        "leading_label": "Healthy",
+        "uncertain": true,
+        "seconds": 1.1088084999937564,
+        "model_score": 0.5566663541358794
+      },
+      {
+        "record_id": "VOICED:voice003",
+        "source": "VOICED",
+        "true_label": 1,
+        "leading_label": "Pathological",
+        "uncertain": true,
+        "seconds": 1.192129199996998,
+        "model_score": 0.8110268666596122
+      }
+    ]
+  },
+  "scope": "Local automated checks; public hosting not verified"
+}

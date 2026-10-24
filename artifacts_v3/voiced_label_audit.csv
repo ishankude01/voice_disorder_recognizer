@@ -1,0 +1,209 @@
+record_id,header_diagnosis,detailed_diagnosis,binary_agrees,diagnosis_text_differs
+voice001,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice002,healthy,healthy,True,False
+voice003,hyperkinetic dysphonia,hyperkinetic dysphonia (nodule),True,True
+voice004,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice005,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice006,hyperkinetic dysphonia,hypokinetic dysphonia,True,True
+voice007,hyperkinetic dysphonia,hyperkinetic dysphonia (nodule),True,True
+voice008,reflux laryngitis,reflux laryngitis,True,False
+voice009,hyperkinetic dysphonia,hyperkinetic dysphonia (nodule),True,True
+voice010,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice011,reflux laryngitis,reflux laryngitis,True,False
+voice012,reflux laryngitis,reflux laryngitis,True,False
+voice013,reflux laryngitis,reflux laryngitis,True,False
+voice014,reflux laryngitis,reflux laryngitis,True,False
+voice015,reflux laryngitis,reflux laryngitis,True,False
+voice016,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice017,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice018,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice019,healthy,healthy,True,False
+voice020,hyperkinetic dysphonia,hyperkinetic dysphonia (reinke's edema),True,True
+voice021,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice022,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice023,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice024,healthy,healthy,True,False
+voice025,healthy,healthy,True,False
+voice026,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice027,reflux laryngitis,reflux laryngitis,True,False
+voice028,reflux laryngitis,reflux laryngitis,True,False
+voice029,reflux laryngitis,reflux laryngitis,True,False
+voice030,reflux laryngitis,reflux laryngitis,True,False
+voice031,reflux laryngitis,reflux laryngitis,True,False
+voice032,healthy,healthy,True,False
+voice033,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice034,healthy,healthy,True,False
+voice035,reflux laryngitis,reflux laryngitis,True,False
+voice036,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice037,reflux laryngitis,reflux laryngitis,True,False
+voice038,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice039,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice040,healthy,healthy,True,False
+voice041,reflux laryngitis,reflux laryngitis,True,False
+voice042,reflux laryngitis,reflux laryngitis,True,False
+voice043,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice044,reflux laryngitis,reflux laryngitis,True,False
+voice045,healthy,healthy,True,False
+voice046,reflux laryngitis,reflux laryngitis,True,False
+voice047,reflux laryngitis,reflux laryngitis,True,False
+voice048,reflux laryngitis,reflux laryngitis,True,False
+voice049,healthy,healthy,True,False
+voice050,reflux laryngitis,reflux laryngitis,True,False
+voice051,healthy,healthy,True,False
+voice052,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice053,reflux laryngitis,reflux laryngitis,True,False
+voice054,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice055,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice056,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice057,reflux laryngitis,reflux laryngitis,True,False
+voice058,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice059,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice060,healthy,healthy,True,False
+voice061,healthy,healthy,True,False
+voice062,reflux laryngitis,reflux laryngitis,True,False
+voice063,reflux laryngitis,reflux laryngitis,True,False
+voice064,hyperkinetic dysphonia,hyperkinetic dysphonia (cordite),True,True
+voice065,reflux laryngitis,reflux laryngitis,True,False
+voice066,reflux laryngitis,reflux laryngitis,True,False
+voice067,healthy,healthy,True,False
+voice068,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice069,reflux laryngitis,reflux laryngitis,True,False
+voice070,healthy,healthy,True,False
+voice071,reflux laryngitis,reflux laryngitis,True,False
+voice072,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice073,reflux laryngitis,reflux laryngitis,True,False
+voice074,reflux laryngitis,reflux laryngitis,True,False
+voice075,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice076,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice077,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice078,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice079,reflux laryngitis,reflux laryngitis,True,False
+voice080,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice081,reflux laryngitis,reflux laryngitis,True,False
+voice082,reflux laryngitis,reflux laryngitis,True,False
+voice083,reflux laryngitis,reflux laryngitis,True,False
+voice084,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice085,healthy,healthy,True,False
+voice086,hyperkinetic dysphonia,hyperkinetic dysphonia (polyps),True,True
+voice087,hypokinetic dysphonia,hypokinetic dysphonia (vocal fold paralysis),True,True
+voice088,hypokinetic dysphonia,hypokinetic dysphonia (spasmodic dysphonia),True,True
+voice089,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice090,healthy,healthy,True,False
+voice091,healthy,healthy,True,False
+voice092,healthy,healthy,True,False
+voice093,hypokinetic dysphonia,hypokinetic dysphonia (vocal fold paralysis),True,True
+voice094,hypokinetic dysphonia,hypokinetic dysphonia (glottic insufficiency),True,True
+voice095,healthy,healthy,True,False
+voice096,healthy,healthy,True,False
+voice097,healthy,healthy,True,False
+voice098,healthy,healthy,True,False
+voice099,healthy,healthy,True,False
+voice100,healthy,healthy,True,False
+voice101,healthy,healthy,True,False
+voice102,healthy,healthy,True,False
+voice103,healthy,healthy,True,False
+voice104,healthy,healthy,True,False
+voice105,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice106,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice107,healthy,healthy,True,False
+voice108,healthy,healthy,True,False
+voice109,healthy,healthy,True,False
+voice110,healthy,healthy,True,False
+voice111,healthy,healthy,True,False
+voice112,hypokinetic dysphonia,hypokinetic dysphonia (vocal fold paralysis),True,True
+voice113,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice114,healthy,healthy,True,False
+voice115,healthy,healthy,True,False
+voice116,hypokinetic dysphonia,hypokinetic dysphonia (conversion dysphonia),True,True
+voice117,hyperkinetic dysphonia,hyperkinetic dysphonia (vocal fold prolapse),True,True
+voice118,hypokinetic dysphonia,hypokinetic dysphonia (dysphonia by chordal groove),True,True
+voice119,hyperkinetic dysphonia,hyperkinetic dysphonia (polyps),True,True
+voice120,healthy,healthy,True,False
+voice121,hypokinetic dysphonia,hypokinetic dysphonia (laryngitis),True,True
+voice122,hypokinetic dysphonia,hypokinetic dysphonia (bilateral vocal fold),True,True
+voice123,healthy,healthy,True,False
+voice124,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice125,healthy,healthy,True,False
+voice126,hyperkinetic dysphonia,hyperkinetic dysphonia (reinke's edema),True,True
+voice127,reflux laryngitis,reflux laryngitis,True,False
+voice128,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice129,hyperkinetic dysphonia,hyperkinetic dysphonia (polyps),True,True
+voice130,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice131,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice132,hyperkinetic dysphonia,hyperkinetic dysphonia  (rigid vocal fold),True,True
+voice133,reflux laryngitis,reflux laryngitis,True,False
+voice134,healthy,healthy,True,False
+voice135,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice136,hypokinetic dysphonia,hypokinetic dysphonia (vocal fold paralysis),True,True
+voice137,hyperkinetic dysphonia,hyperkinetic dysphonia (polyps),True,True
+voice138,hyperkinetic dysphonia,hyperkinetic dysphonia (reinke's edema),True,True
+voice139,healthy,healthy,True,False
+voice140,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice141,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice142,hypokinetic dysphonia,hypokinetic dysphonia (extraglottic air leak),True,True
+voice143,hyperkineti dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice144,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice145,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice146,hyperkinetic dysphonia,hyperkinetic dysphonia (polyps),True,True
+voice147,hyperkinetic dysphonia,hyperkinetic dysphonia (adduction deficit),True,True
+voice148,hypokinetic dysphonia,hypokinetic dysphonia (presbiphonia),True,True
+voice149,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice150,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice151,reflux laryngitis,reflux laryngitis,True,False
+voice152,hyperkinetic dysphonia,hyperkinetic dysphonia (vocal fold nodules),True,True
+voice153,hyperkinetic dysphonia,hyperkinetic dysphonia (polyps),True,True
+voice154,reflux laryngitis,reflux laryngitis,True,False
+voice155,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice156,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice157,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice158,healthy,healthy,True,False
+voice159,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice160,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice161,hypokinetic dysphonia,hypokinetic dysphonia (glottic insufficiency),True,True
+voice162,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice163,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice164,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice165,hypokinetic dysphonia,hypokinetic dysphonia (glottic insufficiency),True,True
+voice166,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice167,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice168,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice169,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice170,hyperkinetic dysphonia,hyperkinetic dysphonia (vocal fold paralysis),True,True
+voice171,hypokinetic dysphonia,hypokinetic dysphonia (glottic insufficiency),True,True
+voice172,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice173,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice174,hypokinetic dysphonia,hypokinetic dysphonia (glottic insufficiency),True,True
+voice175,hypokinetic dysphonia,hypokinetic dysphonia (adduction deficit),True,True
+voice176,healthy,healthy,True,False
+voice177,healthy,healthy,True,False
+voice178,healthy,healthy,True,False
+voice179,healthy,healthy,True,False
+voice180,healthy,healthy,True,False
+voice181,healthy,healthy,True,False
+voice182,healthy,healthy,True,False
+voice183,healthy,healthy,True,False
+voice184,healthy,healthy,True,False
+voice185,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice186,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice187,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice188,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice189,hypokinetic dysphonia,hypokinetic dysphonia (glottic insufficiency),True,True
+voice190,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice191,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice192,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice193,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice194,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice195,healthy,healthy,True,False
+voice196,healthy,healthy,True,False
+voice197,healthy,healthy,True,False
+voice198,hyperkinetic dysphonia,hyperkinetic dysphonia (prolapse),True,True
+voice199,hyperkinetic dysphonia,hyperkinetic dysphonia (nodule),True,True
+voice200,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False
+voice201,hypokinetic dysphonia,hypokinetic dysphonia (glottic insufficiency),True,True
+voice202,hypokinetic dysphonia,hypokinetic dysphonia,True,False
+voice203,healthy,healthy,True,False
+voice204,healthy,healthy,True,False
+voice205,hyperkinetic dysphonia,hyperkinetic dysphonia (nodule),True,True
+voice206,healthy,healthy,True,False
+voice207,healthy,healthy,True,False
+voice208,hyperkinetic dysphonia,hyperkinetic dysphonia,True,False

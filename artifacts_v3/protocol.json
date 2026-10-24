@@ -1,0 +1,146 @@
+{
+  "seed": 20261023,
+  "version": "two-source-v3-97features",
+  "source_hashes": {
+    "svd_v3.py": "1c2851652f564b6719563042a6ee0b120dafa857945770ce944d2e4dfa8cd90b",
+    "svd_training.py": "3fd0d314cb3b5b52a2bfe54931944ebca8c07d0d6d9bb807c52d29f494f830e6",
+    "svd_advanced.py": "616ed581c679414280ebf34287e2d19eb3b19a0224a6d84ec354086121a74b54"
+  },
+  "manifest_hash": "51edc6efa54ed67b60a099010a2248a9b4416d41174667c10224b96c83cd6991",
+  "source_metadata_hash": "1f53ea50e3217d318294940158eba09090ecb0ae560c4d705d4a7144c968aee4",
+  "outer_folds": 4,
+  "inner_folds": 3,
+  "candidates": [
+    {
+      "id": "GMM_1_16000",
+      "family": "GMM",
+      "features": "base",
+      "components": 1,
+      "covariance": "diag",
+      "pca": 0,
+      "sr": 16000
+    },
+    {
+      "id": "GMM_1_8000",
+      "family": "GMM",
+      "features": "base",
+      "components": 1,
+      "covariance": "diag",
+      "pca": 0,
+      "sr": 8000
+    },
+    {
+      "id": "GMM_4_16000",
+      "family": "GMM",
+      "features": "rich",
+      "components": 4,
+      "covariance": "diag",
+      "pca": 20,
+      "sr": 16000
+    },
+    {
+      "id": "GMM_4_8000",
+      "family": "GMM",
+      "features": "rich",
+      "components": 4,
+      "covariance": "diag",
+      "pca": 20,
+      "sr": 8000
+    },
+    {
+      "id": "GMM_tied_16000",
+      "family": "GMM",
+      "features": "rich",
+      "components": 2,
+      "covariance": "tied",
+      "pca": 12,
+      "sr": 16000
+    },
+    {
+      "id": "GMM_tied_8000",
+      "family": "GMM",
+      "features": "rich",
+      "components": 2,
+      "covariance": "tied",
+      "pca": 12,
+      "sr": 8000
+    },
+    {
+      "id": "MLP_small_16000",
+      "family": "MLP",
+      "features": "rich",
+      "layers": [
+        32,
+        16
+      ],
+      "alpha": 1.0,
+      "select": 40,
+      "sr": 16000
+    },
+    {
+      "id": "MLP_small_8000",
+      "family": "MLP",
+      "features": "rich",
+      "layers": [
+        32,
+        16
+      ],
+      "alpha": 1.0,
+      "select": 40,
+      "sr": 8000
+    },
+    {
+      "id": "MLP_medium_16000",
+      "family": "MLP",
+      "features": "base",
+      "layers": [
+        64,
+        32
+      ],
+      "alpha": 0.1,
+      "select": 0,
+      "sr": 16000
+    },
+    {
+      "id": "MLP_medium_8000",
+      "family": "MLP",
+      "features": "base",
+      "layers": [
+        64,
+        32
+      ],
+      "alpha": 0.1,
+      "select": 0,
+      "sr": 8000
+    },
+    {
+      "id": "CNN_aug_16000",
+      "family": "CNN",
+      "features": "rich",
+      "width": 16,
+      "dropout": 0.5,
+      "augment": true,
+      "sr": 16000
+    },
+    {
+      "id": "CNN_aug_8000",
+      "family": "CNN",
+      "features": "rich",
+      "width": 16,
+      "dropout": 0.5,
+      "augment": true,
+      "sr": 8000
+    }
+  ],
+  "evaluation": "All data are development, including all 208 VOICED records. No new untouched external test.",
+  "selection": "Mean source-specific balanced accuracy; within 0.01 prefer GMM, MLP, CNN, ensemble.",
+  "identity": "SVD participant IDs; VOICED release record IDs are participant proxies, not independently reverified.",
+  "voiced_counts": "57 healthy/151 pathological verified against both release labels; website summary differs.",
+  "thresholds": [
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "max_training_hours": 10
+}

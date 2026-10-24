@@ -1,0 +1,15 @@
+{
+  "arrays": {
+    "16000": {
+      "file_hash": "9ba38e74f667ef29067bbb865ab6886ab9a768ade95bf352732c0c97b74ff3fc",
+      "missing_values": 15,
+      "recordings_with_missing": 3
+    },
+    "8000": {
+      "file_hash": "8000945e9f8d0d182190848df09b1f4a645cc60e5eb87f7e72364c547e8671af",
+      "missing_values": 14,
+      "recordings_with_missing": 3
+    }
+  },
+  "manifest_hash": "1aa127d8d9306a9e3d5f22513eb42e22276fdc463c55ba7f1cb1b958e4ca14a4"
+}
